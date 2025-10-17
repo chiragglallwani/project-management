@@ -17,7 +17,7 @@ export const TaskSchema = z
       .max(500)
       .min(10, "Description must be at least 10 characters."),
     status: z.enum(
-      Object.keys(TASK_STATUS_CONFIG) as [TaskStatus, ...TaskStatus[]]
+      Object.keys(TASK_STATUS_CONFIG) as [TaskStatus, ...TaskStatus[]],
     ),
     blockReason: z.string().optional(),
     projectId: z.string(),

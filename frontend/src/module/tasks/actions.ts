@@ -26,7 +26,7 @@ export async function createTaskAction(formData: TaskFormInputs) {
 }
 
 export async function getTasksByProjectIdAction(
-  projectId: string
+  projectId: string,
 ): Promise<ApiResponse<Task[]>> {
   try {
     const response = await getTasksService(projectId);

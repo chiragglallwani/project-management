@@ -9,12 +9,12 @@ import {
 } from "@/config/api";
 
 export async function createTaskService(
-  formData: TaskFormInputs
+  formData: TaskFormInputs,
 ): Promise<ApiResponse<void>> {
   try {
     const response: ApiResponse<void> = await apiClient.post(
       API_ENDPOINTS.TASKS,
-      formData
+      formData,
     );
 
     if (!isSuccessResponse(response)) {
@@ -29,11 +29,11 @@ export async function createTaskService(
 }
 
 export async function getTasksService(
-  projectId: string
+  projectId: string,
 ): Promise<ApiResponse<Task[]>> {
   try {
     const response: ApiResponse<Task[]> = await apiClient.get(
-      `${API_ENDPOINTS.TASKS}?projectId=${projectId}`
+      `${API_ENDPOINTS.TASKS}?projectId=${projectId}`,
     );
 
     if (!isSuccessResponse(response)) {
@@ -49,12 +49,12 @@ export async function getTasksService(
 
 export async function updateTaskService(
   id: string,
-  formData: Partial<TaskFormInputs>
+  formData: Partial<TaskFormInputs>,
 ): Promise<ApiResponse<void>> {
   try {
     const response: ApiResponse<void> = await apiClient.put(
       `${API_ENDPOINTS.TASKS}/${id}`,
-      formData
+      formData,
     );
 
     if (!isSuccessResponse(response)) {
@@ -69,11 +69,11 @@ export async function updateTaskService(
 }
 
 export async function deleteTaskService(
-  id: string
+  id: string,
 ): Promise<ApiResponse<void>> {
   try {
     const response: ApiResponse<void> = await apiClient.delete(
-      `${API_ENDPOINTS.TASKS}/${id}`
+      `${API_ENDPOINTS.TASKS}/${id}`,
     );
 
     if (!isSuccessResponse(response)) {

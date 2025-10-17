@@ -35,7 +35,7 @@ class ApiClient {
   // Generic request method
   private async request<T>(
     endpoint: string,
-    options: RequestInit = {}
+    options: RequestInit = {},
   ): Promise<ApiResponse<T>> {
     const url = `${this.baseURL}${endpoint}`;
 
@@ -60,7 +60,7 @@ class ApiClient {
         if (!response.ok) {
           throw new ApiError(
             `HTTP Error: ${response.status} ${response.statusText}`,
-            response.status
+            response.status,
           );
         }
         return {
@@ -75,7 +75,7 @@ class ApiClient {
         throw new ApiError(
           data.message || `HTTP Error: ${response.status}`,
           response.status,
-          data
+          data,
         );
       }
 
@@ -98,7 +98,7 @@ class ApiClient {
       throw new ApiError(
         error instanceof Error ? error.message : "Network error occurred",
         0,
-        error
+        error,
       );
     }
   }
@@ -106,7 +106,7 @@ class ApiClient {
   // GET request
   async get<T>(
     endpoint: string,
-    options?: RequestInit
+    options?: RequestInit,
   ): Promise<ApiResponse<T>> {
     return this.request<T>(endpoint, {
       ...options,
@@ -118,7 +118,7 @@ class ApiClient {
   async post<T>(
     endpoint: string,
     data?: unknown,
-    options?: RequestInit
+    options?: RequestInit,
   ): Promise<ApiResponse<T>> {
     return this.request<T>(endpoint, {
       ...options,
@@ -131,7 +131,7 @@ class ApiClient {
   async put<T>(
     endpoint: string,
     data?: unknown,
-    options?: RequestInit
+    options?: RequestInit,
   ): Promise<ApiResponse<T>> {
     return this.request<T>(endpoint, {
       ...options,
@@ -143,7 +143,7 @@ class ApiClient {
   // DELETE request
   async delete<T>(
     endpoint: string,
-    options?: RequestInit
+    options?: RequestInit,
   ): Promise<ApiResponse<T>> {
     return this.request<T>(endpoint, {
       ...options,

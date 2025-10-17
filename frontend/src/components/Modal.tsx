@@ -25,7 +25,7 @@ export default function Modal({
           <h3 className="text-xl font-bold text-gray-800">{title}</h3>
           <button
             onClick={onClose}
-            className="p-1 text-gray-800 hover:text-gray-600 transition duration-150 rounded-full hover:bg-gray-100"
+            className="p-1 text-gray-800 hover:text-gray-600 transition duration-150 rounded-full hover:bg-gray-100 hover:cursor-pointer"
           >
             <svg
               className="w-6 h-6"

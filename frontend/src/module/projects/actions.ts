@@ -53,7 +53,7 @@ export async function getProjectAction(id: string) {
 
 export async function updateProjectAction(
   id: string,
-  formData: ProjectFormInputs
+  formData: ProjectFormInputs,
 ) {
   try {
     const response = await updateProjectService(id, formData);

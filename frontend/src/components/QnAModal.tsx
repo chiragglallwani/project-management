@@ -1,8 +1,11 @@
 "use client";
-import { Task } from "@/types/types";
+import { Task, ToastType } from "@/types/types";
 import { useEffect, useState } from "react";
 import Modal from "@/components/Modal";
 import { Loader2, SparklesIcon } from "lucide-react";
+import { assistWithTaskAction } from "@/module/Aiassisstant/actions";
+import AISummaryContent from "@/components/AISummaryContent";
+import { useToast } from "@/hooks/useToast";
 
 type QnAModalProps = {
   task: Task | null;
@@ -14,6 +17,7 @@ export default function QnAModal({ task, isOpen, onClose }: QnAModalProps) {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { showToast } = useToast();
 
   useEffect(() => {
     if (isOpen) {
@@ -29,11 +33,19 @@ export default function QnAModal({ task, isOpen, onClose }: QnAModalProps) {
     setAnswer("");
 
     try {
-      // todo: call the api to get the answer
-      // setAnswer(answer from response of api call)
-    } catch (error) {
+      const response = await assistWithTaskAction(
+        task.id,
+        question,
+        task.projectId,
+      );
+      console.log(response);
+      if (!response.success) {
+        showToast(response.message || "Failed to get answer", ToastType.Error);
+      }
+      setAnswer(response.data || "");
+    } catch {
       setAnswer(
-        "Error fetching AI response. Check the console for API issues."
+        "Error fetching AI response. Check the console for API issues.",
       );
     } finally {
       setIsLoading(false);
@@ -49,11 +61,11 @@ export default function QnAModal({ task, isOpen, onClose }: QnAModalProps) {
     >
       {task && (
         <div className="space-y-4">
-          <div className="p-3 bg-gray-100 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
-            <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">
+          <div className="p-3 bg-gray-100  rounded-lg border border-gray-200 ">
+            <p className="text-sm font-semibold text-gray-700  mb-1">
               Task Context:
             </p>
-            <p className="text-sm italic text-gray-600 dark:text-gray-400 line-clamp-2">
+            <p className="text-md italic text-gray-600  line-clamp-2">
               {task.description || "No description provided."}
             </p>
           </div>
@@ -63,7 +75,7 @@ export default function QnAModal({ task, isOpen, onClose }: QnAModalProps) {
             onChange={(e) => setQuestion(e.target.value)}
             placeholder="Ask a question about this task (e.g., 'What is the main blocker?' or 'What is the next step?')"
             rows={2}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 p-2 transition duration-200"
+            className="mt-1 text-gray-800 block w-full rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 p-2 transition duration-200"
           />
 
           <div className="flex justify-end">
@@ -82,13 +94,11 @@ export default function QnAModal({ task, isOpen, onClose }: QnAModalProps) {
           </div>
 
           {answer && (
-            <div className="border-t pt-4 mt-4 border-gray-200 dark:border-gray-700">
-              <h4 className="font-semibold text-md text-gray-800 dark:text-gray-200 mb-2">
+            <div className="border-t pt-4 mt-4 border-gray-200">
+              <h4 className="font-semibold text-md text-gray-800 mb-2">
                 AI Answer:
               </h4>
-              <p className="text-gray-600 dark:text-gray-300 whitespace-pre-wrap">
-                {answer}
-              </p>
+              <AISummaryContent summaryText={answer} />
             </div>
           )}
         </div>

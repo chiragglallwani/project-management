@@ -9,12 +9,12 @@ import {
 } from "@/config/api";
 
 export async function createProjectService(
-  formData: ProjectFormInputs
+  formData: ProjectFormInputs,
 ): Promise<ApiResponse<void>> {
   try {
     const response: ApiResponse<void> = await apiClient.post(
       API_ENDPOINTS.PROJECTS,
-      formData
+      formData,
     );
 
     if (!isSuccessResponse(response)) {
@@ -31,7 +31,7 @@ export async function createProjectService(
 export async function getProjectsService(): Promise<ApiResponse<Project[]>> {
   try {
     const response: ApiResponse<Project[]> = await apiClient.get(
-      API_ENDPOINTS.PROJECTS
+      API_ENDPOINTS.PROJECTS,
     );
 
     if (!isSuccessResponse(response)) {
@@ -46,11 +46,11 @@ export async function getProjectsService(): Promise<ApiResponse<Project[]>> {
 }
 
 export async function getProjectService(
-  id: string
+  id: string,
 ): Promise<ApiResponse<Project>> {
   try {
     const response: ApiResponse<Project> = await apiClient.get(
-      `${API_ENDPOINTS.PROJECTS}/${id}`
+      `${API_ENDPOINTS.PROJECTS}/${id}`,
     );
 
     if (!isSuccessResponse(response)) {
@@ -66,12 +66,12 @@ export async function getProjectService(
 
 export async function updateProjectService(
   id: string,
-  formData: ProjectFormInputs
+  formData: ProjectFormInputs,
 ): Promise<ApiResponse<void>> {
   try {
     const response: ApiResponse<void> = await apiClient.put(
       `${API_ENDPOINTS.PROJECTS}/${id}`,
-      formData
+      formData,
     );
 
     if (!isSuccessResponse(response)) {
@@ -86,11 +86,11 @@ export async function updateProjectService(
 }
 
 export async function deleteProjectService(
-  id: string
+  id: string,
 ): Promise<ApiResponse<void>> {
   try {
     const response: ApiResponse<void> = await apiClient.delete(
-      `${API_ENDPOINTS.PROJECTS}/${id}`
+      `${API_ENDPOINTS.PROJECTS}/${id}`,
     );
 
     if (!isSuccessResponse(response)) {

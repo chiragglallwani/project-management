@@ -8,7 +8,7 @@ type ProjectPageProps = {
 };
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-  const { id } = params;
+  const { id } = await params;
 
   try {
     const [project, tasks] = await Promise.all([

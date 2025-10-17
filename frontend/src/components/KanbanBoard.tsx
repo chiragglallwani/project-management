@@ -44,11 +44,14 @@ export default function KanbanBoard({
   const { showToast } = useToast();
 
   const groupedTasks = useMemo(() => {
-    return tasks.reduce((acc, task) => {
-      acc[task.status] = acc[task.status] || [];
-      acc[task.status].push(task);
-      return acc;
-    }, {} as Record<TaskStatus, Task[]>);
+    return tasks.reduce(
+      (acc, task) => {
+        acc[task.status] = acc[task.status] || [];
+        acc[task.status].push(task);
+        return acc;
+      },
+      {} as Record<TaskStatus, Task[]>,
+    );
   }, [tasks]);
 
   const handleOpenCreateTask = () => {
@@ -67,7 +70,7 @@ export default function KanbanBoard({
         } else {
           showToast(
             response.message || "Failed to update task",
-            ToastType.Error
+            ToastType.Error,
           );
         }
       } else {
@@ -78,7 +81,7 @@ export default function KanbanBoard({
         } else {
           showToast(
             response.message || "Failed to create task",
-            ToastType.Error
+            ToastType.Error,
           );
         }
       }
@@ -161,7 +164,7 @@ export default function KanbanBoard({
       if (!response.success) {
         showToast(
           response.message || "Failed to update task status",
-          ToastType.Error
+          ToastType.Error,
         );
       }
       setModalOpen(false);

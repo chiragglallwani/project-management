@@ -7,7 +7,7 @@ type DeleteModalProps = {
   onDelete: () => void;
   title: string;
   description: string;
-  actionText: string;
+  actionText?: string;
 };
 
 export default function DeleteModal({

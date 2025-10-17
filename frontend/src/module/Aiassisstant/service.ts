@@ -8,14 +8,14 @@ import {
 } from "@/config/api";
 
 export async function summarizeProjectService(
-  projectId: string
+  projectId: string,
 ): Promise<ApiResponse<string>> {
   try {
     const response: ApiResponse<string> = await apiClient.post(
       `${API_ENDPOINTS.AI_ASSISTANT}/summarize-project`,
       {
         projectId,
-      }
+      },
     );
 
     if (!isSuccessResponse(response)) {
@@ -32,16 +32,16 @@ export async function summarizeProjectService(
 export async function assistWithTaskService(
   taskId: string,
   question: string,
-  projectId?: string
+  projectId?: string,
 ): Promise<ApiResponse<string>> {
   try {
     const response: ApiResponse<string> = await apiClient.post(
-      `${API_ENDPOINTS.AI_ASSISTANT}/assist`,
+      `${API_ENDPOINTS.AI_ASSISTANT}/ask`,
       {
         taskId,
         question,
         projectId,
-      }
+      },
     );
 
     if (!isSuccessResponse(response)) {
