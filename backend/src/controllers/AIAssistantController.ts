@@ -79,7 +79,7 @@ export const summarizeProject = async (
       systemInstruction: { parts: [{ text: systemInstruction }] },
       config: {
         temperature: 0.3,
-        maxOutputTokens: 512,
+        maxOutputTokens: 1024,
         topK: 40,
         topP: 0.9,
       },
@@ -144,8 +144,8 @@ export const assistWithTask = async (
       contents: [{ role: "user", parts: [{ text: userQuery }] }],
       systemInstruction: { parts: [{ text: systemInstruction }] },
       config: {
-        temperature: 0.2,
-        maxOutputTokens: 256,
+        temperature: 0.5,
+        maxOutputTokens: 1024,
         topK: 40,
         topP: 0.9,
       },
