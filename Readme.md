@@ -12,7 +12,7 @@ A full-stack solution for organizing projects, assigning tasks, and tracking pro
 
 - **Project Organization:** Create, categorize, and manage multiple projects.
 - **Task Assignment:** Assign tasks to team members with due dates and priority levels.
-- **Progress Tracking:** Status updates for tasks (To Do, In Progress, Complete).
+- **Progress Tracking:** Status updates for tasks (To Do, In Progress, Blocked, Done).
 - **Gemini Integration:** Utilize the Gemini API for features like automated task summarization or suggested action items.
 - **Containerized Development:** Full support for local setup using Docker Compose.
 
@@ -133,3 +133,7 @@ This method requires Node.js, npm, and a local MongoDB instance.
 
 4.  **Access the Application:**
     Ensure both the backend and frontend are running, then open your browser to: **`http://localhost:3000`**
+
+## Features:
+
+- To avoid UI issues on mobile, I have replaced columns with accordion and added extra field to update status (Note: We can still drag and drop on mobile devices)
