@@ -1,0 +1,78 @@
+FROM node:20-alpine as DEVELOPMENT
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY eslint.config.mjs ./
+COPY tsconfig.json ./
+COPY next-env.d.ts ./
+COPY next.config.ts ./
+COPY postcss.config.mjs ./
+COPY public/ ./public/
+COPY src/ ./src/
+
+# RUN cp backend/.env.example backend/.env
+
+
+COPY . .
+
+
+CMD ["npm", "run", "dev"]
+# # -----------------------------------------------------------
+# # Stage 1: The Builder Stage
+# # Installs all dependencies (including dev) and runs the build command.
+# # -----------------------------------------------------------
+# FROM node:20-alpine AS builder
+
+# # Set the working directory
+# WORKDIR /app
+    
+# # Copy essential package files first for efficient caching
+# COPY package.json package-lock.json ./
+    
+# # Install dependencies (Next.js needs all dependencies to build)
+# RUN npm install
+    
+# # Copy all source code and configuration files needed for the build
+# COPY .env.example ./
+# COPY eslint.config.mjs ./
+# COPY next-env.d.ts ./
+# COPY next.config.ts ./
+# COPY postcss.config.mjs ./
+# COPY tsconfig.json ./
+# COPY public/ ./public/
+# COPY src/ ./src/
+    
+# # Run the Next.js build command
+# RUN npm run build
+    
+# # -----------------------------------------------------------
+# # Stage 2: The Runner Stage (Final Image)
+# # Copies only the necessary files for the application to run.
+# # This results in a smaller, more secure image.
+# # -----------------------------------------------------------
+# FROM node:20-alpine AS runner
+    
+# WORKDIR /app
+    
+# # Copy only production dependencies (no dev dependencies needed for running)
+# COPY package.json package-lock.json ./
+# RUN npm install --omit=dev
+    
+# # Copy the build output from the builder stage
+# # We only need the .next folder, public, and static files
+# COPY --from=builder /app/.next ./.next
+# COPY --from=builder /app/public ./public
+# # Copy necessary configuration files for runtime, if any (usually handled by .next)
+# COPY --from=builder /app/next.config.ts ./
+# # Copy next-env.d.ts if necessary, although often excluded in production runner
+    
+# # Expose the port the Next.js production server runs on
+# EXPOSE 3000
+
+#     # Command to start the application in production mode
+# CMD ["npm", "start"]
+    

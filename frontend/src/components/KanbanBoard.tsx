@@ -50,7 +50,7 @@ export default function KanbanBoard({
         acc[task.status].push(task);
         return acc;
       },
-      {} as Record<TaskStatus, Task[]>,
+      {} as Record<TaskStatus, Task[]>
     );
   }, [tasks]);
 
@@ -64,13 +64,12 @@ export default function KanbanBoard({
       if (editingTask) {
         const response = await updateTaskAction(editingTask.id, data);
         if (response.success) {
-          console.log("response", response);
           showToast(response.message ?? "", ToastType.Success);
           setIsTaskModalOpen(false);
         } else {
           showToast(
             response.message || "Failed to update task",
-            ToastType.Error,
+            ToastType.Error
           );
         }
       } else {
@@ -81,7 +80,7 @@ export default function KanbanBoard({
         } else {
           showToast(
             response.message || "Failed to create task",
-            ToastType.Error,
+            ToastType.Error
           );
         }
       }
@@ -164,7 +163,7 @@ export default function KanbanBoard({
       if (!response.success) {
         showToast(
           response.message || "Failed to update task status",
-          ToastType.Error,
+          ToastType.Error
         );
       }
       setModalOpen(false);

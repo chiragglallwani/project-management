@@ -37,14 +37,14 @@ export default function SummaryModal({
       if (!response.success) {
         showToast(
           response.message || "Failed to generate summary",
-          ToastType.Error,
+          ToastType.Error
         );
       }
       setSummary(response.data || "");
     } catch {
       showToast(
         "Error generating summary. Check the console for API issues.",
-        ToastType.Error,
+        ToastType.Error
       );
     } finally {
       setIsLoading(false);
@@ -53,7 +53,7 @@ export default function SummaryModal({
 
   useEffect(() => {
     if (isOpen) {
-      //generateSummary(); // Auto-generate when opened
+      // generateSummary(); // Auto-generate when opened
     }
   }, [isOpen, generateSummary]);
 
@@ -71,7 +71,7 @@ export default function SummaryModal({
           </p>
           <button
             onClick={generateSummary}
-            className="flex items-center space-x-1 px-3 py-1.5 text-sm font-medium rounded-lg transition duration-150 disabled:opacity-50 bg-indigo-700 text-white hover:bg-indigo-600 hover:cursor-pointer shadow-md shadow-indigo-500/10"
+            className="flex items-center space-x-1 px-3 py-2 text-sm font-medium rounded-lg transition duration-150 disabled:opacity-50 bg-indigo-700 text-white hover:bg-indigo-600 hover:cursor-pointer shadow-md shadow-indigo-500/10"
             disabled={isLoading || tasks.length === 0}
           >
             {isLoading ? (
@@ -79,12 +79,12 @@ export default function SummaryModal({
             ) : (
               <RefreshCcw className="w-4 h-4" />
             )}
-            <span>{isLoading ? "Regenerating..." : "Regenerate"}</span>
+            <span>{isLoading ? "Summarizing Now..." : "Summarize"}</span>
           </button>
         </div>
 
         {summary ? (
-          <div className="p-4 bg-gray-50 rounded-lg border border-gray-400 shadow-inner min-h-[150px] transition duration-300">
+          <div className="p-4 rounded-lg border border-gray-400 shadow-inner min-h-[150px] transition duration-300 max-h-[300px] overflow-y-auto">
             <AISummaryContent summaryText={summary} />
           </div>
         ) : (

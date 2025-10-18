@@ -26,7 +26,7 @@ export async function createTaskAction(formData: TaskFormInputs) {
 }
 
 export async function getTasksByProjectIdAction(
-  projectId: string,
+  projectId: string
 ): Promise<ApiResponse<Task[]>> {
   try {
     const response = await getTasksService(projectId);
@@ -46,7 +46,7 @@ export async function updateTaskAction(id: string, formData: TaskFormInputs) {
     if (!response.success) {
       throw new Error(response.message);
     }
-    revalidatePath("/tasks/[id]");
+    revalidatePath("/tasks");
     return response;
   } catch (error) {
     console.error("Error updating task:", error);

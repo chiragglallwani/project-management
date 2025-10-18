@@ -36,16 +36,15 @@ export default function QnAModal({ task, isOpen, onClose }: QnAModalProps) {
       const response = await assistWithTaskAction(
         task.id,
         question,
-        task.projectId,
+        task.projectId
       );
-      console.log(response);
       if (!response.success) {
         showToast(response.message || "Failed to get answer", ToastType.Error);
       }
-      setAnswer(response.data || "");
+      setAnswer(response.data ?? "");
     } catch {
       setAnswer(
-        "Error fetching AI response. Check the console for API issues.",
+        "Error fetching AI response. Check the console for API issues."
       );
     } finally {
       setIsLoading(false);
@@ -57,7 +56,7 @@ export default function QnAModal({ task, isOpen, onClose }: QnAModalProps) {
       title={`AI Task Assistant: ${task?.title}`}
       isOpen={isOpen}
       onClose={onClose}
-      width="max-w-2xl"
+      width="max-w-3xl"
     >
       {task && (
         <div className="space-y-4">
@@ -94,7 +93,7 @@ export default function QnAModal({ task, isOpen, onClose }: QnAModalProps) {
           </div>
 
           {answer && (
-            <div className="border-t pt-4 mt-4 border-gray-200">
+            <div className="border-t pt-4 mt-4 border-gray-200 max-h-[300px] overflow-y-auto">
               <h4 className="font-semibold text-md text-gray-800 mb-2">
                 AI Answer:
               </h4>

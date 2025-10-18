@@ -149,8 +149,8 @@ export default function ProjectManager({ projects }: ProjectManagerProps) {
             </div>
           ))
         ) : (
-          <div className="md:col-span-2 lg:col-span-3 text-center p-12 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-inner">
-            <p className="text-lg text-gray-500 dark:text-gray-400 italic">
+          <div className="md:col-span-2 lg:col-span-3 text-center">
+            <p className="text-lg text-gray-500 italic">
               No projects found. Click &quot;New Project&quot; to start
               organizing!
             </p>
