@@ -31,8 +31,6 @@ export async function getProjectsAction() {
     if (!response.success) {
       throw new Error(response.message);
     }
-    // Revalidate the home page to ensure fresh data
-    revalidatePath("/");
     return response.data;
   } catch (error) {
     console.error("Error fetching projects:", error);
