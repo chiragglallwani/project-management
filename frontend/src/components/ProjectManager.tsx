@@ -119,7 +119,7 @@ export default function ProjectManager({ projects }: ProjectManagerProps) {
               onClick={() => router.push(`/projects/${project.id}`)}
             >
               <div className="flex flex-col justify-between items-start">
-                <h2 className="text-xl font-bold text-gray-900 truncate pr-2">
+                <h2 className="text-xl font-bold text-gray-900 line-clamp-3 pr-2">
                   {project.name.slice(0, 1).toUpperCase() +
                     project.name.slice(1)}
                 </h2>
