@@ -31,12 +31,7 @@ export async function createProjectService(
 export async function getProjectsService(): Promise<ApiResponse<Project[]>> {
   try {
     const response: ApiResponse<Project[]> = await apiClient.get(
-      API_ENDPOINTS.PROJECTS,
-      {
-        next: {
-          revalidate: 60,
-        },
-      }
+      API_ENDPOINTS.PROJECTS
     );
 
     if (!isSuccessResponse(response)) {
