@@ -34,7 +34,7 @@ export async function getProjectsService(): Promise<ApiResponse<Project[]>> {
       API_ENDPOINTS.PROJECTS,
       {
         next: {
-          revalidate: 0,
+          revalidate: 60,
         },
       }
     );
