@@ -10,7 +10,7 @@ A full-stack solution for organizing projects, assigning tasks, and tracking pro
 
 ## Demo Videos:
 - Desktop: https://www.loom.com/share/dc4b3da30df74a028b7da46fa94ac052?sid=fab29eab-59e5-4bf9-b01a-9342a7e9cfcc
-- Mobile: 
+- Mobile: https://www.loom.com/share/72a4ed8f6ce543d4bb39a36bcfeb2886
 
 ## ✨ Key Features
 
