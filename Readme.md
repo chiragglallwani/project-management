@@ -8,6 +8,10 @@ A full-stack solution for organizing projects, assigning tasks, and tracking pro
 
 ---
 
+## Demo Videos:
+- Desktop: https://www.loom.com/share/dc4b3da30df74a028b7da46fa94ac052?sid=fab29eab-59e5-4bf9-b01a-9342a7e9cfcc
+- Mobile: 
+
 ## ✨ Key Features
 
 - **Project Organization:** Create, categorize, and manage multiple projects.
